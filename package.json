@@ -1,0 +1,22 @@
+{
+  "name": "Krestianstvo Web",
+  "version": "0.0.0",
+  "description": "Krestianstvo Web server",
+  "main": "app.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "h5bp": "~0.1.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node app.js"
+  },
+  "keywords": [
+    "krestianstvo"
+  ],
+  "author": "Nikolai Suslov",
+  "license": "MIT",
+  "readmeFilename": "README.md"
+}
