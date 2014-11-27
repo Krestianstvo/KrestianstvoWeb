@@ -1,5 +1,5 @@
 var express = require('express'),
-    h5bp = require('h5bp');
+h5bp = require('h5bp');
 
 var app = express();
 app.use(h5bp({ root: __dirname + '/public' }));

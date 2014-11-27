@@ -1,11 +1,9 @@
 {
-  "name": "Krestianstvo Web",
-  "version": "0.0.0",
+  "name": "KrestianstvoWeb",
+  "version": "0.0.1",
   "description": "Krestianstvo Web server",
+  "homepage": "http://www.krestianstvo.org",
   "main": "app.js",
-  "directories": {
-    "test": "test"
-  },
   "dependencies": {
     "h5bp": "~0.1.2"
   },
@@ -18,5 +16,9 @@
   ],
   "author": "Nikolai Suslov",
   "license": "MIT",
-  "readmeFilename": "README.md"
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Krestianstvo/KrestianstvoWeb"
+  }
 }
