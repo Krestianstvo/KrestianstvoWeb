@@ -3,7 +3,8 @@ Krestianstvo Web site front-end page
 
 For install:
 
-sudo npm install
-node app.js
+1. sudo npm install
 
-place any files to ./public dir
+2. node app.js
+
+3. place any files to ./public dir
