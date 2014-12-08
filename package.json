@@ -5,7 +5,8 @@
   "homepage": "http://www.krestianstvo.org",
   "main": "app.js",
   "dependencies": {
-    "h5bp": "~0.1.2"
+    "h5bp": "~0.1.2",
+    "express": "~3.4.8"
   },
   "devDependencies": {},
   "scripts": {
