@@ -1,5 +1,7 @@
 var express = require('express'),
+morgan = require('morgan'),
 h5bp = require('h5bp');
+
 
 var app = express();
 var port = 3001;
@@ -8,6 +10,8 @@ app.use(h5bp({ root: __dirname + '/public' }));
 // in order to serve files, you should add the two following middlewares
 app.use(express.compress());
 app.use(express.static(__dirname + '/public'));
+
+app.use(morgan('combined'));
 
 app.get('/en', function(req, res) {
   res.sendfile(__dirname + '/public/index-en.html');
