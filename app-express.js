@@ -30,7 +30,7 @@ app.use(function(req, res, next){
 
   // respond with html page
   if (req.accepts('html')) {
-    res.sendfile(__dirname + '/public/404.html');
+    res.redirect('404.html');
     return;
   }
 
