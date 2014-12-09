@@ -21,6 +21,26 @@ app.get('/vwf-ometa', function(req, res) {
   res.redirect('projects/en/vwf-ometa');
 });
 
+app.use(function(req, res, next){
+  res.status(404);
+
+  // respond with html page
+  if (req.accepts('html')) {
+    res.sendfile(__dirname + '/public/404.html');
+    return;
+  }
+
+  // respond with json
+  if (req.accepts('json')) {
+    res.send({ error: 'Not found' });
+    return;
+  }
+
+  // default to plain-text. send()
+  res.type('txt').send('Not found');
+});
+
+
 app.listen(port);
 console.log('Krestianstvo Web server is started on port: '+ port);
 
