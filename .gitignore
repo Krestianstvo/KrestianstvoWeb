@@ -2,4 +2,5 @@
 .directory
 /public/projects/*
 /public/books/*
+/public/mathclub/*
 npm-debug.log
