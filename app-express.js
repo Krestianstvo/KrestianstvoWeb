@@ -25,7 +25,7 @@ app.use(function (req, res, next) {
               node: __dirname + "/public",
               locksBackend: jsDAV_Locks_Backend_FS.new(__dirname + "/public"),
               authBackend:  jsDAV_Auth_Backend_File.new(__dirname + "/htdigest"),
-              realm: "jsdavtest",
+              realm: "labtalabta",
               mount: "/webdav",
               server: req.app,
               standalone: false
