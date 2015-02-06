@@ -1,17 +1,42 @@
 var express = require('express'),
-morgan = require('morgan'),
-h5bp = require('h5bp');
+    compression = require('compression'),
+    serveStatic = require('serve-static'),
+    morgan = require('morgan'),
+    h5bp = require('h5bp');
 
+var jsDAV = require("jsDAV/lib/DAV/server");
+jsDAV.debugMode = true;
+var jsDAV_Locks_Backend_FS  = require("jsDAV/lib/DAV/plugins/locks/fs");
+var jsDAV_Auth_Backend_File = require("jsDAV/lib/DAV/plugins/auth/file");
 
 var app = express();
 var port = 3001;
+
 app.use(h5bp({ root: __dirname + '/public' }));
-
-// in order to serve files, you should add the two following middlewares
-app.use(express.compress());
-app.use(express.static(__dirname + '/public'));
-
+app.use(compression());
+app.use(serveStatic(__dirname + '/public'));
 app.use(morgan('combined'));
+
+/*=====Site specific paths=====*/
+
+app.use(function (req, res, next) {
+        if (req.url.search(/^\/webdav/) >= 0) {
+          jsDAV.mount({
+              node: __dirname + "/public",
+              locksBackend: jsDAV_Locks_Backend_FS.new(__dirname + "/public"),
+              authBackend:  jsDAV_Auth_Backend_File.new(__dirname + "/htdigest"),
+              realm: "jsdavtest",
+              mount: "/webdav",
+              server: req.app,
+              standalone: false
+            }
+          ).exec(req, res);
+        }
+        else {
+          next();
+        }
+      }
+    )
 
 app.get('/en', function(req, res) {
   res.sendfile(__dirname + '/public/index-en.html');
@@ -49,9 +74,7 @@ app.use(function(req, res, next){
   res.type('txt').send('Not found');
 });
 
+//=========end of specific===========
 
 app.listen(port);
-console.log('Krestianstvo Web server is started on port: '+ port);
-
-
-///redirection from old site paths http://www.krestianstvo.org/web/
+console.log('Web server is started on port: '+ port);
