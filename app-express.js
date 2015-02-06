@@ -1,6 +1,7 @@
 var express = require('express'),
     compression = require('compression'),
     serveStatic = require('serve-static'),
+    serveIndex = require('serve-index'),
     morgan = require('morgan'),
     h5bp = require('h5bp');
 
@@ -16,6 +17,7 @@ app.use(h5bp({ root: __dirname + '/public' }));
 app.use(compression());
 app.use(serveStatic(__dirname + '/public'));
 app.use(morgan('combined'));
+app.use('/data', serveIndex('public/data', {'icons': true}))
 
 /*=====Site specific paths=====*/
 
