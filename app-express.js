@@ -10,7 +10,7 @@ var jsDAV_Locks_Backend_FS  = require("jsDAV/lib/DAV/plugins/locks/fs");
 var jsDAV_Auth_Backend_File = require("jsDAV/lib/DAV/plugins/auth/file");
 
 var app = express();
-var port = 3001;
+var port = 3002;
 
 app.use(h5bp({ root: __dirname + '/public' }));
 app.use(compression());
@@ -36,24 +36,7 @@ app.use(function (req, res, next) {
           next();
         }
       }
-    )
-
-app.get('/en', function(req, res) {
-  res.sendfile(__dirname + '/public/index-en.html');
-});
-
-/* app.get('/vwf-ometa', function(req, res) {
-  res.sendfile(__dirname + '/public/vwf-ometa.html');
-});
-*/
-app.get('/vwf-ometa', function(req, res) {
-  res.redirect('projects/en/vwf-ometa');
-});
-
-app.get('/%D0%B4%D0%B0%D0%BB%D0%B5%D0%B5/krestianstvo', function(req, res) {
-  res.redirect('/');
-});
-
+    );
 
 app.use(function(req, res, next){
   res.status(404);
