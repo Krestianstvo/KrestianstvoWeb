@@ -57,11 +57,6 @@ app.get('/%D0%B4%D0%B0%D0%BB%D0%B5%D0%B5/krestianstvo', function(req, res) {
 });
 
 
-app.get('/web/nikolaysuslov', function(req, res) {
-  res.redirect('../books/krestianstvo/ru/authors/suslovnv/INDEX.html');
-});
-
-
 app.use(function(req, res, next){
   res.status(404);
 
