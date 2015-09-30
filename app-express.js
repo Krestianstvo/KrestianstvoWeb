@@ -20,7 +20,7 @@ app.use(morgan('combined'));
 app.use('/data', serveIndex('public/data', {'icons': true}))
 
 /*=====Site specific paths=====*/
-//test
+
 app.use(function (req, res, next) {
         if (req.url.search(/^\/webdav/) >= 0) {
           jsDAV.mount({
