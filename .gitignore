@@ -1,5 +1,6 @@
 /node_modules/*
 .directory
 /public/*
+/data/*
 npm-debug.log
 htdigest

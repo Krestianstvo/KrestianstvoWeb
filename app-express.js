@@ -6,7 +6,7 @@ var express = require('express'),
     h5bp = require('h5bp');
 
 var jsDAV = require("jsDAV/lib/DAV/server");
-jsDAV.debugMode = true;
+jsDAV.debugMode = false;
 var jsDAV_Locks_Backend_FS  = require("jsDAV/lib/DAV/plugins/locks/fs");
 var jsDAV_Auth_Backend_File = require("jsDAV/lib/DAV/plugins/auth/file");
 
@@ -17,15 +17,15 @@ app.use(h5bp({ root: __dirname + '/public' }));
 app.use(compression());
 app.use(serveStatic(__dirname + '/public'));
 app.use(morgan('combined'));
-app.use('/data', serveIndex('public/data', {'icons': true}))
+app.use('/data', serveIndex(__dirname + '/data', {'icons': true}))
 
 /*=====Site specific paths=====*/
 //test
 app.use(function (req, res, next) {
         if (req.url.search(/^\/webdav/) >= 0) {
           jsDAV.mount({
-              node: __dirname + "/public",
-              locksBackend: jsDAV_Locks_Backend_FS.new(__dirname + "/public"),
+              node: __dirname + "/data",
+              locksBackend: jsDAV_Locks_Backend_FS.new(__dirname + "/data"),
               authBackend:  jsDAV_Auth_Backend_File.new(__dirname + "/htdigest"),
               realm: "jsdavtest",
               mount: "/webdav",
@@ -41,11 +41,11 @@ app.use(function (req, res, next) {
     )
 
 app.get('/en', function(req, res) {
-  res.sendfile(__dirname + '/public/index-en.html');
+  res.sendFile(__dirname + '/public/index-en.html');
 });
 
 /* app.get('/vwf-ometa', function(req, res) {
-  res.sendfile(__dirname + '/public/vwf-ometa.html');
+  res.sendFile(__dirname + '/public/vwf-ometa.html');
 });
 */
 app.get('/vwf-ometa', function(req, res) {
@@ -62,7 +62,7 @@ app.use(function(req, res, next){
 
   // respond with html page
   if (req.accepts('html')) {
-    res.sendfile(__dirname + '/public/404.html');
+    res.sendFile(__dirname + '/public/404.html');
     return;
   }
 
